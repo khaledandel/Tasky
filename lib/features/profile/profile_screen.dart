@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:tasky/Screens/user_details_screen.dart';
-import 'package:tasky/Screens/welcome_screen.dart';
+import 'package:tasky/features/profile/user_details_screen.dart';
+import 'package:tasky/features/welcome/welcome_screen.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
 import 'package:tasky/core/themes/theme_controlar.dart';
 import 'package:tasky/core/widgts/custam_svg_widget.dart';
@@ -68,11 +68,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundImage: userImagePath == null
                             ? AssetImage('assets/images/Avatar.png')
                             : FileImage(File(userImagePath!)),
-
                         radius: 60,
                         backgroundColor: Colors.transparent,
                       ),
-
                       GestureDetector(
                         onTap: () async {
                           showImageSourceDaialog(context, (XFile file) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tasky/Screens/high_priority_screen.dart';
+import 'package:tasky/features/tasks/high_priority_screen.dart';
 import 'package:tasky/core/themes/theme_controlar.dart';
 import 'package:tasky/core/widgts/cutsam_cheak_box.dart';
 import 'package:tasky/models/task_model.dart';

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:tasky/Screens/add_task_screen.dart';
+import 'package:tasky/features/add_task/add_task_screen.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
 import 'package:tasky/core/widgts/custam_svg_widget.dart';
 import 'package:tasky/models/task_model.dart';
