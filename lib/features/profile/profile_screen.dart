@@ -73,7 +73,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          showImageSourceDaialog(context, (XFile file) {
+                          showImageSourceDaialog(context, (
+                            XFile file,
+                          ) // fun as sa parametar use to save new photo as a profile
+                          {
                             _saveImagePath(file);
                             setState(() {
                               userImagePath = file.path;
@@ -96,20 +99,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ],
                   ),
                 ),
-
                 SizedBox(height: 8),
                 Text(
                   '$username',
                   style: Theme.of(context).textTheme.labelSmall,
                 ),
-
                 Text(
                   motivationQuote == null
                       ? 'One task at a time. One step closer.'
                       : '$motivationQuote',
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
-
                 SizedBox(height: 24),
               ],
             ),
@@ -212,12 +212,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             'Chosse Image Source',
             style: Theme.of(context).textTheme.titleMedium,
           ),
-
           children: [
             SimpleDialogOption(
               onPressed: () async {
                 Navigator.pop(context);
-
                 XFile? image = await ImagePicker().pickImage(
                   source: ImageSource.camera,
                 );
@@ -225,6 +223,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   selectedFile(image);
                 }
               },
+
               padding: EdgeInsets.all(16),
               child: Row(
                 children: [
