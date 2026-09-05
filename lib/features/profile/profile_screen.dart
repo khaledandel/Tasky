@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:tasky/core/constans/storage_key.dart';
 import 'package:tasky/features/profile/user_details_screen.dart';
 import 'package:tasky/features/welcome/welcome_screen.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
@@ -31,19 +32,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void _loadUserName() async {
     setState(() {
-      username = PreferanceManager().getString('username');
+      username = PreferanceManager().getString(StorageKey.username);
     });
   }
 
   void _loadMotivationQuote() async {
     setState(() {
-      motivationQuote = PreferanceManager().getString('motivation_quote');
+      motivationQuote = PreferanceManager().getString(
+        StorageKey.motivation_quote,
+      );
     });
   }
 
   void _laodUserImage() {
     setState(() {
-      userImagePath = PreferanceManager().getString('user_image');
+      userImagePath = PreferanceManager().getString(StorageKey.user_image);
     });
   }
 
@@ -172,7 +175,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             ListTile(
               onTap: () async {
-                PreferanceManager().remove('username');
+                PreferanceManager().remove(StorageKey.username);
                 // PreferanceManager().remove('tasks');
                 PreferanceManager().remove('motivation_quote');
 

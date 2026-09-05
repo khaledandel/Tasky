@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:tasky/core/constans/storage_key.dart';
 import 'package:tasky/features/add_task/add_task_screen.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
 import 'package:tasky/core/widgts/custam_svg_widget.dart';
@@ -37,7 +38,7 @@ class _HomeScreen extends State<HomeScreen> {
 
   void _loadUserName() async {
     setState(() {
-      username = PreferanceManager().getString('username');
+      username = PreferanceManager().getString(StorageKey.username);
     });
   }
 
@@ -45,7 +46,7 @@ class _HomeScreen extends State<HomeScreen> {
     setState(() {
       isLoding = true;
     });
-    final finalTask = PreferanceManager().getString('tasks');
+    final finalTask = PreferanceManager().getString(StorageKey.tasks);
     if (finalTask != null) {
       final List<dynamic> taskAfterDecode = jsonDecode(finalTask);
       setState(() {
@@ -74,7 +75,10 @@ class _HomeScreen extends State<HomeScreen> {
     });
 
     final updatedTask = tasks.map((element) => element.toMap()).toList();
-    await PreferanceManager().setString('tasks', jsonEncode(updatedTask));
+    await PreferanceManager().setString(
+      StorageKey.tasks,
+      jsonEncode(updatedTask),
+    );
   }
 
   _deleteTask(int id) async {

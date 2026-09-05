@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:tasky/core/constans/storage_key.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
 import 'package:tasky/core/widgts/custam_text_form_filed.dart';
 import 'package:tasky/models/task_model.dart';
@@ -65,10 +66,7 @@ class _AddtaskState extends State<Addtask> {
                           maxLines: 5,
                         ),
                       ),
-
-                      ////////////////////////////////////////////////////////////////////
                       SizedBox(height: 20),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -96,24 +94,25 @@ class _AddtaskState extends State<Addtask> {
               ElevatedButton.icon(
                 onPressed: () async {
                   if (_key.currentState?.validate() ?? false) {
-                    final taskJson = PreferanceManager().getString('tasks');
+                    final taskJson = PreferanceManager().getString(
+                      StorageKey.tasks,
+                    );
                     List<dynamic> listTasks = [];
-
                     if (taskJson != null) {
                       listTasks = jsonDecode(taskJson);
                     }
-
                     TaskModel model = TaskModel(
                       id: (listTasks.length + 1),
                       taskName: taskNameControllar.text,
                       taskDescription: taskDescriptionControllar.text,
                       isHighPriority: isHighPriority,
                     );
-
                     listTasks.add(model.toMap());
                     final taskEncode = jsonEncode(listTasks);
-                    await PreferanceManager().setString('tasks', taskEncode);
-
+                    await PreferanceManager().setString(
+                      StorageKey.tasks,
+                      taskEncode,
+                    );
                     Navigator.of(context).pop(true);
                   }
                 },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasky/core/constans/storage_key.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
 import 'package:tasky/core/widgts/custam_svg_widget.dart';
 import 'package:tasky/core/widgts/custam_text_form_filed.dart';
@@ -80,7 +81,7 @@ class Welcome_Screen extends StatelessWidget {
                     onPressed: () async {
                       if (_key.currentState?.validate() ?? false) {
                         await PreferanceManager().setString(
-                          'username',
+                          StorageKey.username,
                           controller.text,
                         );
                         Navigator.pushReplacement(
