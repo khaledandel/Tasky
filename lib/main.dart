@@ -3,9 +3,7 @@ import 'package:tasky/core/constans/storage_key.dart';
 import 'package:tasky/features/navigation/main_screen.dart';
 import 'package:tasky/features/welcome/welcome_screen.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
-// ignore: unused_import
 import 'package:tasky/core/themes/dark_mode.dart';
-// ignore: unused_import
 import 'package:tasky/core/themes/light_mode.dart';
 import 'package:tasky/core/themes/theme_controlar.dart';
 
