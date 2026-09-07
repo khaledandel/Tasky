@@ -62,7 +62,10 @@ class _CompleteTasksScreenState extends State<CompleteTasksScreen> {
         completeTasks.removeWhere((task) => task.id == id);
       });
       final updateedTask = tasks.map((element) => element.toMap()).toList();
-      await PreferanceManager().setString('tasks', jsonEncode(updateedTask));
+      await PreferanceManager().setString(
+        StorageKey.tasks,
+        jsonEncode(updateedTask),
+      );
     }
   }
 
@@ -117,7 +120,7 @@ class _CompleteTasksScreenState extends State<CompleteTasksScreen> {
                         allDataList[newIndex] = completeTasks[index!];
 
                         await PreferanceManager().setString(
-                          'tasks',
+                          StorageKey.tasks,
                           jsonEncode(
                             allDataList
                                 .map((element) => element.toMap())

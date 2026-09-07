@@ -39,14 +39,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void _loadMotivationQuote() async {
     setState(() {
       motivationQuote = PreferanceManager().getString(
-        StorageKey.motivation_quote,
+        StorageKey.motivationQuote,
       );
     });
   }
 
   void _laodUserImage() {
     setState(() {
-      userImagePath = PreferanceManager().getString(StorageKey.user_image);
+      userImagePath = PreferanceManager().getString(StorageKey.userImage);
     });
   }
 
@@ -176,8 +176,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ListTile(
               onTap: () async {
                 PreferanceManager().remove(StorageKey.username);
-                // PreferanceManager().remove('tasks');
-                PreferanceManager().remove('motivation_quote');
+                // PreferanceManager().remove(StorageKey.tasks);
+                PreferanceManager().remove(StorageKey.motivationQuote);
 
                 Navigator.pushAndRemoveUntil(
                   context,
@@ -269,6 +269,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final newFile = await File(
       file.path,
     ).copy('${appDirectory.path}/${file.name}');
-    PreferanceManager().setString('user_image', newFile.path);
+    PreferanceManager().setString(StorageKey.userImage, newFile.path);
   }
 }

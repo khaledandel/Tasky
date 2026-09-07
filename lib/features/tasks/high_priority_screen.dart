@@ -66,7 +66,10 @@ class _HighPriorityScreenState extends State<HighPriorityScreen> {
         highPeriorityTasks.removeWhere((task) => task.id == id);
       });
       final updateedTask = tasks.map((element) => element.toMap()).toList();
-      await PreferanceManager().setString('tasks', jsonEncode(updateedTask));
+      await PreferanceManager().setString(
+        StorageKey.tasks,
+        jsonEncode(updateedTask),
+      );
     }
   }
 

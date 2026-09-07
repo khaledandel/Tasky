@@ -64,12 +64,15 @@ class HomeControllar extends ChangeNotifier {
     tasks.removeWhere((task) => task.id == id);
     calcPercent();
     final updatedTask = tasks.map((element) => element.toMap()).toList();
-    await PreferanceManager().setString('tasks', jsonEncode(updatedTask));
+    await PreferanceManager().setString(
+      StorageKey.tasks,
+      jsonEncode(updatedTask),
+    );
     notifyListeners();
   }
 
   void laodUserImage() {
-    userImagePath = PreferanceManager().getString('user_image');
+    userImagePath = PreferanceManager().getString(StorageKey.userImage);
     notifyListeners();
   }
 }
