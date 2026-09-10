@@ -36,7 +36,10 @@ class HighPriorityScreen extends StatelessWidget {
                                 return TaskListWidget(
                                   tasks: value.highPeriorityTasks,
                                   onTap: (bool? value, int? index) {
-                                    controller.doneHighPeriorityTasks;
+                                    controller.doneHighPeriorityTasks(
+                                      value,
+                                      index,
+                                    );
                                     controller.loadTaskes();
                                   },
                                   emptyMessage: 'No Tasks Founded',

@@ -176,7 +176,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ListTile(
               onTap: () async {
                 PreferanceManager().remove(StorageKey.username);
-                PreferanceManager().remove(StorageKey.tasks);
+                // PreferanceManager().remove(StorageKey.tasks);
                 PreferanceManager().remove(StorageKey.motivationQuote);
 
                 Navigator.pushAndRemoveUntil(

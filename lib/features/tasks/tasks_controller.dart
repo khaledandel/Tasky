@@ -24,6 +24,14 @@ class TasksController extends ChangeNotifier {
 
   void loadTaskes() async {
     isLoding = true;
+
+    _loadData();
+
+    isLoding = false;
+    notifyListeners();
+  }
+
+  _loadData() {
     final finalTask = PreferanceManager().getString(StorageKey.tasks);
     if (finalTask != null) {
       final List<dynamic> taskAfterDecode = jsonDecode(finalTask);
@@ -37,11 +45,7 @@ class TasksController extends ChangeNotifier {
           .toList()
           .reversed
           .toList();
-
-      // calcPercent();
     }
-    isLoding = false;
-    notifyListeners();
   }
 
   void doneTasks(bool? value, int? index) async {
