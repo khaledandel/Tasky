@@ -30,14 +30,6 @@ class HomeControllar extends ChangeNotifier {
 
   void loadTaskes() async {
     isLoding = true;
-
-    _loadData();
-
-    isLoding = false;
-    notifyListeners();
-  }
-
-  _loadData() {
     final finalTask = PreferanceManager().getString(StorageKey.tasks);
     if (finalTask != null) {
       final List<dynamic> taskAfterDecode = jsonDecode(finalTask);
@@ -46,6 +38,9 @@ class HomeControllar extends ChangeNotifier {
       }).toList();
       calcPercent();
     }
+
+    isLoding = false;
+    notifyListeners();
   }
 
   void calcPercent() {

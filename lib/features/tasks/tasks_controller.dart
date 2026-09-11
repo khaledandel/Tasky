@@ -24,28 +24,27 @@ class TasksController extends ChangeNotifier {
 
   void loadTaskes() async {
     isLoding = true;
-
-    _loadData();
-
-    isLoding = false;
-    notifyListeners();
-  }
-
-  _loadData() {
     final finalTask = PreferanceManager().getString(StorageKey.tasks);
     if (finalTask != null) {
       final List<dynamic> taskAfterDecode = jsonDecode(finalTask);
       tasks = taskAfterDecode.map((json) {
         return TaskModel.toObjectOfTaskModel(json);
       }).toList();
-      todoTasks = tasks.where((element) => !element.isDone).toList();
-      completeTasks = tasks.where((element) => element.isDone).toList();
-      highPeriorityTasks = tasks
-          .where((element) => element.isHighPriority)
-          .toList()
-          .reversed
-          .toList();
+      _loadData();
     }
+
+    isLoding = false;
+    notifyListeners();
+  }
+
+  void _loadData() {
+    todoTasks = tasks.where((element) => !element.isDone).toList();
+    completeTasks = tasks.where((element) => element.isDone).toList();
+    highPeriorityTasks = tasks
+        .where((element) => element.isHighPriority)
+        .toList()
+        .reversed
+        .toList();
   }
 
   void doneTasks(bool? value, int? index) async {
